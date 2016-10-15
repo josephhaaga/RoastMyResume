@@ -6,14 +6,14 @@ function addToSidebar(anno_obj){
 	console.log(anno_obj['type']);
 	switch(anno_obj['type']){
 		case "grammar":
-			$('.sidebar').append("<div class='callout' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,0,240,0.5);'>"+anno_obj.remarks+"</div>");
+			$('.sidebar').append("<div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,0,240,0.5);'>"+anno_obj.remarks+"</div>");
 			break;
 		case "design":
-			$('.sidebar').append("<div class='callout' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,240,0,0.5);'>"+anno_obj.remarks+"</div>");
+			$('.sidebar').append("<div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,240,0,0.5);'>"+anno_obj.remarks+"</div>");
 			break;
 		case "content":
 			// $('.sidebar').append("<div class='callout alert'>"+anno_obj.remarks+"</div>");
-			$('.sidebar').append("<div class='callout' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(240,0,0,0.5);'>"+anno_obj.remarks+"</div>");
+			$('.sidebar').append("<div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(240,0,0,0.5);'>"+anno_obj.remarks+"</div>");
 			break;
 	}	
 }
@@ -53,10 +53,13 @@ function registerComment(x,y){
 			switch(selected_type){
 				case "grammar":
 					$('.resume-container').append("<div class='blue-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
+					break;
 				case "design":
 					$('.resume-container').append("<div class='green-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
+					break;
 				case "content":
 					$('.resume-container').append("<div class='red-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
+					break;
 			}
 		}
 

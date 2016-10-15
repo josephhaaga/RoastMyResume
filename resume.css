@@ -86,3 +86,14 @@ input[data-toggle]:checked + label:active {
 	background-color: salmon;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
 }*/
+
+/* Sidebar Annotations */
+.sidebar-annotation{
+	overflow:hidden;
+	max-height:100px;
+	transition: max-height 0.5s ease-in;
+}
+.sidebar-annotation:hover, .sidebar-annotation:focus{
+	overflow-wrap: break-word;
+	max-height: 600px;
+}
