@@ -20,6 +20,7 @@ function registerComment(x,y){
 
 function createNewComment(x,y){
 	console.log("comment added at "+x+", "+y);
+	$('.resume-container').append("<div class='red-dot-light' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
 	$('#comment-modal').foundation('open');
 	$('#comment-field').focus();
 

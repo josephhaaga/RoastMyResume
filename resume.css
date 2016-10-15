@@ -11,6 +11,26 @@
 	height:100%;
 	/*padding:1rem 1rem 0 1rem;*/
 }
-.resume-container{
-	position: relative;
+.red-dot-light{
+	background: rgba(240,0,0,0.5);
+	height:20px;
+	width:20px;
+	border-radius:50%;
+}
+.green-dot-light{
+	background: rgba(0,240,0,0.5);
+	height:20px;
+	width:20px;
+	border-radius:50%;
+}
+.blue-dot-light{
+	background: rgba(0,0,240,0.5);
+	height:20px;
+	width:20px;
+	border-radius:50%;
+}
+
+
+body.is-reveal-open {
+	overflow: visible;
 }
