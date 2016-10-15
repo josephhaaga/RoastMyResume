@@ -34,3 +34,7 @@
 body.is-reveal-open {
 	overflow: visible;
 }
+
+.resume-container img{
+	width:100%;
+}

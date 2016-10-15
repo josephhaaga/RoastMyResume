@@ -1,9 +1,14 @@
+var annotation_number=1;
+annotation_status = [];
+
 function registerComment(x,y){
 	// Write to Firebase if field has text entered & category set
 	// use imgur image ID as /root/
+	// console.log("registerComment("+x+","+y+") began");
 	var text_field_val = $('#comment-field').val()
 	if(text_field_val.length>0){
 		$('#comment-submit').addClass("success").text("Success!");
+		annotation_status[annotation_number]=true;
 		setTimeout(
 			function(){
 				$('#comment-field').val('');
@@ -12,32 +17,41 @@ function registerComment(x,y){
 			}
 		,800);
 		console.log("Comment entered!");
-		
+		return true;
 	}else{
 		console.log("no text in field");
+		return false;
 	}
 }
 
-function createNewComment(x,y){
-	console.log("comment added at "+x+", "+y);
-	$('.resume-container').append("<div class='red-dot-light' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
+function createNewComment(x,y,anno){
 	$('#comment-modal').foundation('open');
 	$('#comment-field').focus();
-
 	$(document).keypress(function(e) {
 	    if(e.which == 13) {
-	    	registerComment(x,y);
+	    	if(!registerComment(x,y)){
+	    		$('#annotation'+annotation_number).detach();
+	    	}
 	    }
 	});
-
 	$('#comment-submit').click(function(){
-		registerComment(x,y);
-	})
+		if(!registerComment(x,y)){
+	    	$('#annotation'+annotation_number).detach();
+    	}
+	});
 }
 
 $('.the-resume').click(function(e){
-	// window.alert("clicked at "+e.pageX+" "+e.pageY);
 	var x = e.pageX;
 	var y = e.pageY;
-	createNewComment(x,y);
+	$('.resume-container').append("<div class='red-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
+	createNewComment(x,y,annotation_number);
+	// console.log(createNewComment(x,y,annotation_number));
+});
+
+$('#comment-modal').on("closed.zf.reveal",function(){
+	if(!annotation_status[annotation_number]==true){
+		$('#annotation'+annotation_number).detach();
+	}
+	annotation_number+=1;
 });
