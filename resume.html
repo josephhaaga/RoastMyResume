@@ -31,10 +31,23 @@
           <div id="comment-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
               <div class="modal-interior">
                 <textarea id="comment-field" placeholder="Roast this fool"></textarea>
-                <legend>What kind of annotation is this?</legend>
-                <input type="radio" name="commentType" value="Red" id="commentContent" checked="checked"><label for="pocketsRed">Content</label>
-                <input type="radio" name="commentType" value="Blue" id="commentDesign"><label for="pocketsBlue">Design</label>
-                <input type="radio" name="commentType" value="Yellow" id="commentSpellGram"><label for="pocketsYellow">Spelling/Grammar</label>
+                  <h4>What kind of annotation is this?</h4>
+                  <ul class="button-group round toggle" style="text-align:center;" data-toggle="buttons-radio">
+                    <li id="commentContent">
+                      <input type="radio" id="r1" name="r-group" data-toggle="button">
+                      <label class="button" for="r1">Content</label>
+                    </li>
+                    <li id="commentDesign">
+                      <input type="radio" id="r2" name="r-group" data-toggle="button">
+                      <label class="button" id="r2" for="r2">Design</label>
+                    </li>
+                    <li id="commentGrammar">
+                      <input type="radio" id="r3" name="r-group" data-toggle="button">
+                      <label class="button" id="r3" for="r3">Grammar</label>
+                    </li>
+                  </ul>
+
+
                 <a id="comment-submit" class="button expanded">Submit</a>
               </div>
             </div>

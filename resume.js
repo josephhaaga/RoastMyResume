@@ -55,3 +55,15 @@ $('#comment-modal').on("closed.zf.reveal",function(){
 	}
 	annotation_number+=1;
 });
+
+$('#comment-modal #commentGrammar').click(function(){
+	$('#annotation'+annotation_number).removeClass().addClass("blue-dot-light");
+});
+
+$('#comment-modal #commentContent').click(function(){
+	$('#annotation'+annotation_number).removeClass().addClass("red-dot-light");
+});
+
+$('#comment-modal #commentDesign').click(function(){
+	$('#annotation'+annotation_number).removeClass().addClass("green-dot-light");
+});
