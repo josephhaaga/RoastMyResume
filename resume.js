@@ -12,7 +12,7 @@ function registerComment(x,y){
 			}
 		,800);
 		console.log("Comment entered!");
-
+		
 	}else{
 		console.log("no text in field");
 	}
