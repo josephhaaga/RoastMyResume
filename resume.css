@@ -1,0 +1,16 @@
+.modal-interior{
+	background:#fff;
+	position: absolute;
+	top:15%;
+	right:2%;
+	/*min-height: 150px;*/
+	min-width:300px;
+	padding:1rem 1rem 0 1rem;
+}
+.modal-interior textarea{
+	height:100%;
+	/*padding:1rem 1rem 0 1rem;*/
+}
+.resume-container{
+	position: relative;
+}

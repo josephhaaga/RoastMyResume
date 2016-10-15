@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roast My Resume</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="resume.css">
+  </head>
+  <body>
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Roast My Resume</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="border">
+
+          <div class="medium-10 column resume-container">
+            <img class="the-resume" src="http://i.imgur.com/CSS4APd.png"/>
+          </div>
+
+          <div class="medium-2 column">
+            <p>Sidebar<p>
+          </div>
+
+          <div id="comment-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+              <div class="modal-interior">
+                <textarea id="comment-field" placeholder="Roast this fool"></textarea>
+                <a id="comment-submit" class="button expanded">Submit</a>
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+    <script src="resume.js"></script>
+    <script>
+    $(document).ready(function(){
+      $(this).foundation();      
+    })
+    </script>
+  </body>
+</html>
