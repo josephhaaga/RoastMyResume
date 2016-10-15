@@ -3,7 +3,19 @@ annotation_status = [];
 annotations = {};
 
 function addToSidebar(anno_obj){
-
+	console.log(anno_obj['type']);
+	switch(anno_obj['type']){
+		case "grammar":
+			$('.sidebar').append("<div class='callout' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,0,240,0.5);'>"+anno_obj.remarks+"</div>");
+			break;
+		case "design":
+			$('.sidebar').append("<div class='callout' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,240,0,0.5);'>"+anno_obj.remarks+"</div>");
+			break;
+		case "content":
+			// $('.sidebar').append("<div class='callout alert'>"+anno_obj.remarks+"</div>");
+			$('.sidebar').append("<div class='callout' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(240,0,0,0.5);'>"+anno_obj.remarks+"</div>");
+			break;
+	}	
 }
 
 
@@ -28,8 +40,9 @@ function registerComment(x,y){
 				$('#comment-modal').foundation('close');
 				$('#comment-submit').removeClass("success").text('Submit');
 			}
-		,800);
+		,600);
 		console.log("Comment entered!");
+		addToSidebar(annotations[annotation_number]);
 		return true;
 	}else{
 		console.log("no text in field");
@@ -50,7 +63,7 @@ function registerComment(x,y){
 		$('#comment-submit').addClass("warning").text("Forget something?");
 		setTimeout(function(){
 			$('#comment-submit').removeClass("warning");
-		},500);
+		},600);
 		return false;
 	}
 }
@@ -58,25 +71,11 @@ function registerComment(x,y){
 function createNewComment(x,y,anno){
 	$('#comment-modal').foundation('open');
 	$('#comment-field').focus();
-	$(document).keypress(function(e) {
-	    if(e.which == 13) {
-	    	// if(!registerComment(x,y)){
-	    	// 	$('#annotation'+annotation_number).detach();
-	    	// }
-	    	registerComment(x,y);
-	    }
-	});
-	$('#comment-submit').click(function(){
-		// if(!registerComment(x,y)){
-	 //    	$('#annotation'+annotation_number).detach();
-  //   	}
-  		registerComment(x,y);
-	});
 }
 
 $('.the-resume').click(function(e){
-	var x = e.pageX;
-	var y = e.pageY;
+	x = e.pageX;
+	y = e.pageY;
 	$('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
 	createNewComment(x,y,annotation_number);
 });
@@ -84,6 +83,8 @@ $('.the-resume').click(function(e){
 $('#comment-modal').on("closed.zf.reveal",function(){
 	if(!annotation_status[annotation_number]==true){
 		$('#annotation'+annotation_number).detach();
+		$(':checked').first().prop('checked',false);
+		$('#comment-field').val("");
 	}
 	annotation_number+=1;
 });
@@ -98,4 +99,13 @@ $('#comment-modal #commentContent').click(function(){
 
 $('#comment-modal #commentDesign').click(function(){
 	$('#annotation'+annotation_number).removeClass().addClass("green-dot-light");
+});
+
+$(document).keypress(function(e) {
+    if(e.which == 13 && $('body').hasClass('is-reveal-open')) {
+    	registerComment(x,y);
+    }
+});
+$('#comment-submit').click(function(){
+		registerComment(x,y);
 });
