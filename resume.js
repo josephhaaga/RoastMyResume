@@ -12,15 +12,7 @@ starCountRef.on('value', function(snapshot) {
   }
 });
 
-function setupSidebar(ob){
-	// make sure annotation does not already exist on page
-	if($("#sidebarAnnotation"+ob).length<=0){
-		annotation_number = ob;
-		addToSidebar(annotations[ob]);
-	}
-}
-function addToSidebar(anno_obj){
-	console.log(anno_obj)
+function determineColor(anno_obj){
 	switch(anno_obj['type']){
 		case "grammar":
 			color = "rgba(0,0,240,0.5)";
@@ -32,7 +24,38 @@ function addToSidebar(anno_obj){
 			color = "rgba(240,0,0,0.5)";
 			break;
 	}	
-	$('.sidebar .annotations').append("<li><div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:"+color+";'>"+anno_obj.remarks+"</div></li>");
+	return color;
+}
+
+function setupSidebar(ob){
+	// make sure annotation does not already exist on page
+	if($("#sidebarAnnotation"+ob).length<=0){
+		annotation_number = ob;
+		addToSidebar(annotations[ob]);
+		// add Annotation Dot
+		$('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(annotations[ob].x-10)+"px;top:"+(annotations[ob].y-10)+"px; background-color:"+determineColor(annotations[ob])+"'></div>");
+	}
+}
+function addToSidebar(anno_obj){
+	console.log(anno_obj)
+
+	$('.sidebar .annotations').append("<li><div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:"+determineColor(anno_obj)+";'>"+anno_obj.remarks+"</div></li>");
+
+	// Hover listeners for Sidebar Annotation and Annotation Dot
+	$('#sidebarAnnotation'+annotation_number).hover( function(){
+		$(this).addClass('highlight');
+		$('#annotation'+annotation_number).addClass('highlight');
+	}, function(){
+		$(this).removeClass('highlight');
+		$('#annotation'+annotation_number).removeClass('highlight');
+	});
+	$('#annotation'+annotation_number).hover( function(){
+		$(this).addClass('highlight');
+		$('#sidebarAnnotation'+annotation_number).addClass('highlight');
+	}, function(){
+		$(this).removeClass('highlight');
+		$('#sidebarAnnotation'+annotation_number).removeClass('highlight');
+	});
 }
 
 
@@ -47,7 +70,7 @@ function registerComment(x,y){
 		$('#comment-submit').addClass("success").text("Success!");
 		annotation_status[annotation_number]=true;
 		var users_remarks = $('#comment-field').val();
-		annotations[annotation_number] = {'type':$(':checked').first().attr('id'), 'remarks':users_remarks};
+		annotations[annotation_number] = {'type':$(':checked').first().attr('id'), 'remarks':users_remarks, 'x': x, 'y': y};
 		setTimeout(
 			function(){
 				$('#comment-field').val('');
