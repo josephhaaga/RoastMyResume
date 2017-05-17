@@ -5,18 +5,18 @@ var this_resume_id = 123;
 
 function addToSidebar(anno_obj){
 	console.log('addToSidebar()');
-	// switch(anno_obj['type']){
-	// 	case "grammar":
-	// 		$('.sidebar').append("<li><div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,0,240,0.5);'>"+anno_obj.remarks+"</div></li>");
-	// 		break;
-	// 	case "design":
-	// 		$('.sidebar').append("<div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,240,0,0.5);'>"+anno_obj.remarks+"</div>");
-	// 		break;
-	// 	case "content":
-	// 		// $('.sidebar').append("<div class='callout alert'>"+anno_obj.remarks+"</div>");
-	// 		$('.sidebar').append("<div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(240,0,0,0.5);'>"+anno_obj.remarks+"</div>");
-	// 		break;
-	// }	
+	switch(anno_obj['type']){
+		case "grammar":
+			$('.sidebar').append("<li><div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,0,240,0.5);'>"+anno_obj.remarks+"</div></li>");
+			break;
+		case "design":
+			$('.sidebar').append("<div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(0,240,0,0.5);'>"+anno_obj.remarks+"</div>");
+			break;
+		case "content":
+			// $('.sidebar').append("<div class='callout alert'>"+anno_obj.remarks+"</div>");
+			$('.sidebar').append("<div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:rgba(240,0,0,0.5);'>"+anno_obj.remarks+"</div>");
+			break;
+	}	
 }
 
 
