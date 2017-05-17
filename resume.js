@@ -3,7 +3,24 @@ annotations = {};
 var this_resume_id = 123;
 
 
+var starCountRef = firebase.database().ref('resume/' + this_resume_id + '/posts');
+starCountRef.on('value', function(snapshot) {
+  annotations = (snapshot.val());
+  $.each(annotations, setupSidebar);
+  if(annotations==null){
+  	annotations = {};
+  }
+});
+
+function setupSidebar(ob){
+	// make sure annotation does not already exist on page
+	if($("#sidebarAnnotation"+ob).length<=0){
+		annotation_number = ob;
+		addToSidebar(annotations[ob]);
+	}
+}
 function addToSidebar(anno_obj){
+	console.log(anno_obj)
 	switch(anno_obj['type']){
 		case "grammar":
 			color = "rgba(0,0,240,0.5)";
@@ -39,7 +56,7 @@ function registerComment(x,y){
 				$('#comment-submit').removeClass("success").text('Submit');
 			}
 		,600);
-		addToSidebar(annotations[annotation_number]);
+		// addToSidebar(annotations[annotation_number]);
 		firebase.database().ref('resume/'+this_resume_id+'/posts/'+annotation_number).update(annotations[annotation_number]);
 		return true;
 	}else{
