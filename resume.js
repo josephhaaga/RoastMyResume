@@ -41,19 +41,36 @@ function addToSidebar(anno_obj){
 
 	$('.sidebar .annotations').append("<li><div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:"+determineColor(anno_obj)+";'>"+anno_obj.remarks+"</div></li>");
 
+	switch($(this).prop('id')){
+		case 'commentContent':
+			$('#annotation'+annotation_number).removeClass().addClass("red-dot-light");
+			break;
+		case 'commentGrammar':
+			$('#annotation'+annotation_number).removeClass().addClass("blue-dot-light");		
+			break;
+		default:
+			$('#annotation'+annotation_number).removeClass().addClass("green-dot-light");		
+			break;
+	}
+
 	// Hover listeners for Sidebar Annotation and Annotation Dot
 	$('#sidebarAnnotation'+annotation_number).hover( function(){
 		$(this).addClass('highlight');
+		annotation_number = ($(this).prop('id').replace("sidebarAnnotation",""));
 		$('#annotation'+annotation_number).addClass('highlight');
 	}, function(){
 		$(this).removeClass('highlight');
+		annotation_number = ($(this).prop('id').replace("sidebarAnnotation",""));
 		$('#annotation'+annotation_number).removeClass('highlight');
 	});
+
 	$('#annotation'+annotation_number).hover( function(){
 		$(this).addClass('highlight');
+		annotation_number = ($(this).prop('id').replace("annotation",""));
 		$('#sidebarAnnotation'+annotation_number).addClass('highlight');
 	}, function(){
 		$(this).removeClass('highlight');
+		annotation_number = ($(this).prop('id').replace("annotation",""));
 		$('#sidebarAnnotation'+annotation_number).removeClass('highlight');
 	});
 }
@@ -68,9 +85,9 @@ function registerComment(x,y){
 
 	if(num_letters>0 && $(':checked').length>0){
 		$('#comment-submit').addClass("success").text("Success!");
-		annotation_status[annotation_number]=true;
+		// annotation_status[annotation_number]=true;
 		var users_remarks = $('#comment-field').val();
-		annotations[annotation_number] = {'type':$(':checked').first().attr('id'), 'remarks':users_remarks, 'x': x, 'y': y};
+		new_anno = {'type':$(':checked').first().attr('id'), 'remarks':users_remarks, 'x': x, 'y': y};
 		setTimeout(
 			function(){
 				$('#comment-field').val('');
@@ -80,7 +97,7 @@ function registerComment(x,y){
 			}
 		,600);
 		// addToSidebar(annotations[annotation_number]);
-		firebase.database().ref('resume/'+this_resume_id+'/posts/'+annotation_number).update(annotations[annotation_number]);
+		annotation_number = firebase.database().ref('resume/'+this_resume_id+'/posts').push(new_anno);
 		return true;
 	}else{
 		if($('#annotation'+annotation_number).length==0){
@@ -106,17 +123,19 @@ function registerComment(x,y){
 	}
 }
 
-function createNewComment(x,y,anno){
+// function createNewComment(x,y,anno){
+function createNewComment(x,y){
 	$('#comment-modal').foundation('open');
 	$('#comment-field').focus();
 }
 
 $('.the-resume').click(function(e){
-	annotation_number = firebase.database().ref('resume/'+this_resume_id).child('posts').push().key;
+	// annotation_number = firebase.database().ref('resume/'+this_resume_id).child('posts').push().key;
 	x = e.pageX;
 	y = e.pageY;
-	$('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
-	createNewComment(x,y,annotation_number);
+	// $('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
+	// createNewComment(x,y,annotation_number);
+	createNewComment(x,y);
 });
 
 $('#comment-modal').on("closed.zf.reveal",function(){
@@ -127,20 +146,6 @@ $('#comment-modal').on("closed.zf.reveal",function(){
 	// }
 });
 
-// Style Annotation dot to match annotation_type
-$(".commentType li").click(function(){
-	switch($(this).prop('id')){
-		case 'commentContent':
-			$('#annotation'+annotation_number).removeClass().addClass("red-dot-light");
-			break;
-		case 'commentGrammar':
-			$('#annotation'+annotation_number).removeClass().addClass("blue-dot-light");		
-			break;
-		default:
-			$('#annotation'+annotation_number).removeClass().addClass("green-dot-light");		
-			break;
-	}
-});
 
 $(document).keypress(function(e) {
     if(e.which == 13 && $('body').hasClass('is-reveal-open')) {
