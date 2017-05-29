@@ -46,11 +46,21 @@
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
-    <script>
-    $(document).ready(function(){
-      $(this).foundation();      
-    })
-    </script>
     <script src="./js/dropzone.js"></script>
+    <script>
+	    $(document).ready(function(){
+	      $(this).foundation();    
+	      	Dropzone.autoDiscover = false;
+		    $(".dropzone").dropzone({
+		        renameFilename: function (filename) {
+		        	var postsRef = ref.child("resume");
+					var newPostRef = postsRef.push();
+					console.log("renaming file "+newPostRef);
+		            return newPostRef;
+		        }
+		    }); 
+	    });
+
+    </script>
   </body>
 </html>
