@@ -32,16 +32,20 @@
           <p>Remember to bookmark your resume page link! You will need this to view feedback on your resume</p>
           <div class="upload-zone">
             <div class="row">
-              <label for="email">Enter your email:</label>
-              <input id="emailField" type="email" name="email">
+              <div class="medium-10 medium-offset-1 columns">
+                <label for="email">Enter your email:</label>
+                <input id="emailField" type="email" name="email">
+              </div>
             </div>
             <div class="row">
-              <form action="perform_upload.php" method="post" class="dropzone" enctype="multipart/form-data">
-          <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
-                      Drop resume here (or click to select from harddrive):
-                      <!-- <input type="file" name="file" id="fileToUpload">
-                      <input type="submit" value="Upload Image" name="submit"> -->
-              </form>
+              <div class="medium-12 columns">
+                <form action="perform_upload.php" method="post" class="dropzone" enctype="multipart/form-data">
+            <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
+                        Drop resume here (or click to select from harddrive):
+                        <!-- <input type="file" name="file" id="fileToUpload">
+                        <input type="submit" value="Upload Image" name="submit"> -->
+                </form>
+              </div>
             </div>
           </div>
         </div>
