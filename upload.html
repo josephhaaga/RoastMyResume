@@ -58,6 +58,7 @@
 					str = newPostRef.toString();
 					file_name = str.substring(str.lastIndexOf('/')+1,str.length-1) + ".jpg";
 					console.log("renaming file from "+filename+" to "+file_name);
+					newPostRef.set({"uploaded":true})
 		            return file_name;
 		        }
 		    }); 
