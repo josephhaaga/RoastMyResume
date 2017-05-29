@@ -17,7 +17,9 @@
       </div>
       <div class="medium-6 columns" data-equalizer-watch>
         <div class="random-button">
-          <a href="/resume.html?resumeId=">Random Resume</a>
+            <?php $array = explode("\n", file_get_contents('resume_ids')); ?>
+            <?php $random_resume = $array[array_rand($array)]; ?>
+          <a href="/resume.html?resumeId=<?php echo $random_resume; ?>">Random Resume</a>
         </div>
       </div>
     </div>
@@ -39,7 +41,6 @@
 
             <pre class="callout">
                 <?php $array = explode("\n", file_get_contents('resume_ids')); ?>
-                <?php print_r($array); ?>
                 <?php echo $array[array_rand($array)]; ?>
             </pre>
 
