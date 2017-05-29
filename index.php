@@ -56,7 +56,7 @@
         <div class="callout secondary">
           <div class="row">
             <!-- Grid of resumes -->
-            <?php $uploads = scandir('/uploads'); ?>
+            <?php $uploads = scandir('uploads'); ?>
             <?php print_r($uploads); ?>
             <?php foreach($uploads as $key=>$value){
               echo '<div class="medium-4 columns resume-item">
