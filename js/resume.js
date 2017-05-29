@@ -1,6 +1,6 @@
 annotation_status = [];
 annotations = {};
-// var this_resume_id = 123;
+var this_resume_id = 123;
 var url = window.location.href;
 var captured = /resumeId=([^&]+)/.exec(url)[1]; // Value is in [1] ('384' in our case)
 var this_resume_id = captured ? captured : '123';
