@@ -47,6 +47,7 @@
                   </ul>
                 </li>
               </ul>
+            <h4><a href="http://roastmyresume.com/upload.php">Upload your resume</a> to get started!</h4>
             </div>
             <div class="medium-8 columns">
               <img src="/img/demo.png" />
