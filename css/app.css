@@ -31,3 +31,35 @@ body{
 .dropzone{
 	display: none;
 }
+
+
+.random-button{
+	position: absolute;
+    top: 50%; right: 0%;
+  	transform: translate(-50%,-50%);
+}
+.random-button a{
+	color:white;
+	font-size: 1.6rem;
+}
+
+.random-button::after{
+	content: "";
+    display: block;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    right: -0.5rem;
+    top: 1rem;
+    -webkit-transform: translate(0,13%) rotate(-45deg);
+    -moz-transform: translate(0,13%) rotate(-45deg);
+    -ms-transform: translate(0,13%) rotate(-45deg);
+    -o-transform: translate(0,13%) rotate(-45deg);
+    transform: translate(0,13%) rotate(-45deg);
+}
+
+.navigation .columns{
+	position: relative;
+}
