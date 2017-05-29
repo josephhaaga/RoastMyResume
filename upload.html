@@ -70,7 +70,8 @@
 		        },
 		        success:  function() {
 		        	console.log("UPLOAD SUCCESSFUL!");
-		        	$('.upload-zone').append("<p>Visit your new resume page: </p><a style='display:inline;' href='roastmyresume.com/resume.html?resumeId="+file_name+"' >roastmyresume.com/resume.html?resumeId="+file_name+"</a>")
+		        	my_path = file_name.substring(0,file_name.indexOf("."));
+		        	$('.upload-zone').append("<p>Visit your new resume page: </p><a style='display:inline;' href='http://roastmyresume.com/resume.html?resumeId="+my_path+"' >roastmyresume.com/resume.html?resumeId="+my_path+"</a>")
 		        }
 		    }); 
 	    });
