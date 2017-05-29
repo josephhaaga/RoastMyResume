@@ -67,3 +67,7 @@ body{
 .resume-item{
 	padding-bottom: 1rem;
 }
+
+.resume-item:nth-child(3n+1) {
+    clear: both;
+}
