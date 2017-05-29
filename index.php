@@ -33,7 +33,11 @@
             <div class="medium-4 columns">
               <h3>Features</h3>
               <ul>
-                <li>Annotate directly on the resume</li>
+                <li>Annotate directly on the resume
+                  <ul>
+                    <li>Hover over an annotation to see where it applies</li>
+                  </ul>
+                </li>
                 <li>Leave feedback on <span style="color:red;">content</span>, <span style="color:blue;">grammar</span>, or <span style="color:green;">design</span></li>
                 <li>The more feedback you give, the more you get!
                   <ul>
