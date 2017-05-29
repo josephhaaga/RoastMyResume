@@ -27,3 +27,7 @@ body{
 .resume-container{
 	position: relative
 }
+
+.dropzone{
+	display: none;
+}

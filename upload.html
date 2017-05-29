@@ -20,6 +20,8 @@
         <div class="border">
 
         	<div class="upload-zone">
+            <label for="email">Enter your email:</label>
+            <input id="emailField" type="email" name="email">
 	        	<form action="upload.php" method="post" class="dropzone" enctype="multipart/form-data">
 <!-- 					Drop resume here (or select from harddrive):
 					<input type="file" name="fileToUpload" id="fileToUpload">
@@ -48,10 +50,11 @@
     <script src="js/vendor/foundation.js"></script>
     <script src="./js/dropzone.js"></script>
     <script>
+      email_address = null;
 	    $(document).ready(function(){
 	      run = false;
 	      $(this).foundation();    
-	      	Dropzone.autoDiscover = false;
+	      Dropzone.autoDiscover = false;
 		    $(".dropzone").dropzone({
 		        renameFilename: function (filename) {
 		        	if(!run){
@@ -71,10 +74,27 @@
 		        success:  function() {
 		        	console.log("UPLOAD SUCCESSFUL!");
 		        	my_path = file_name.substring(0,file_name.indexOf("."));
-		        	$('.upload-zone').append("<p>Visit your new resume page: </p><a style='display:inline;' href='http://roastmyresume.com/resume.html?resumeId="+my_path+"' >roastmyresume.com/resume.html?resumeId="+my_path+"</a>")
+		        	$('.upload-zone').append("<p>Visit your new resume page: </p><a style='display:inline;' href='http://roastmyresume.com/resume.html?resumeId="+my_path+"' >roastmyresume.com/resume.html?resumeId="+my_path+"</a>");
+              firebase.database().ref("users").push({"user":email_address, "file":file_name});
 		        }
 		    }); 
+
+        $('#emailField').on('keyup',function(){
+          email_address = $(this).val();
+          $('.dropzone').show();
+        })
 	    });
+
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-66264514-8', 'auto');
+      ga('send', 'pageview');
 
     </script>
   </body>
