@@ -39,7 +39,7 @@
 
             <pre class="callout">
                 <?php $n = fopen("resume_ids", "r"); ?>
-                <?php //print_r(fread($n, filesize("resume_ids")); ?>
+                <?php echo (fread($n, filesize("resume_ids")); ?>
                 <?php fclose($n); ?>
             </pre>
 
