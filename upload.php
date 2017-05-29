@@ -27,17 +27,23 @@
     <div class="row">
       <div class="large-12 columns">
         <div class="border">
-          <p>Please upload a jpg/png with all personal information redacted!!!</p>
-            <div class="upload-zone">
-            <label for="email">Enter your email:</label>
-            <input id="emailField" type="email" name="email">
-                <form action="perform_upload.php" method="post" class="dropzone" enctype="multipart/form-data">
-            <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
-                        Drop resume here (or select from harddrive):
-                        <!-- <input type="file" name="file" id="fileToUpload">
-                        <input type="submit" value="Upload Image" name="submit"> -->
-                    </form>
+          <h2>Upload your resume</h2>
+          <p>Please upload a jpg or png with all personal information redacted! RMR is not liable for any consequences of uploading personal information.</p>
+          <p>Remember to bookmark your resume page link! You will need this to view feedback on your resume</p>
+          <div class="upload-zone">
+            <div class="row">
+              <label for="email">Enter your email:</label>
+              <input id="emailField" type="email" name="email">
             </div>
+            <div class="row">
+              <form action="perform_upload.php" method="post" class="dropzone" enctype="multipart/form-data">
+          <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
+                      Drop resume here (or click to select from harddrive):
+                      <!-- <input type="file" name="file" id="fileToUpload">
+                      <input type="submit" value="Upload Image" name="submit"> -->
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
