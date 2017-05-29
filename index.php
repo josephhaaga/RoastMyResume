@@ -52,7 +52,7 @@
         <div class="callout secondary">
           <div class="row">
             <!-- Grid of resumes -->
-            <?php $uploads = scandir('/uploads'); ?>
+            <?php $uploads = scandir('uploads'); ?>
             <?php print_r($uploads); ?>
             <div class="medium-4 columns resume-item">
               <a href="http://roastmyresume.com/resume.html?resumeId=123"><img src="http://i.imgur.com/CSS4APd.png" /></a>
