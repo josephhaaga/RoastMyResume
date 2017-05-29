@@ -8,7 +8,7 @@ data=open(newest).read();
 k=json.loads(data);
 list_of_resume_ids = k.keys();
 
-z=open("resume_ids",'wb');
+z=open("../httpdocs/resume_ids",'wb');
 z.writelines("\n".join(list_of_resume_ids));
 z.close();
 
