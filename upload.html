@@ -54,7 +54,7 @@
 		    $(".dropzone").dropzone({
 		        renameFilename: function (filename) {
 		        	var postsRef = firebase.database().ref("resume");
-					var newPostRef = postsRef.push();
+					var newPostRef = postsRef.push({"uploaded":true});
 					str = newPostRef.toString();
 					file_name = str.substring(str.lastIndexOf('/')+1,str.length-1) + ".jpg";
 					console.log("renaming file from "+filename+" to "+file_name);
