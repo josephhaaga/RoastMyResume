@@ -53,12 +53,12 @@
           <div class="row">
             <!-- Grid of resumes -->
             <?php $uploads = scandir('/uploads'); ?>
-            <?php foreach($uploads as $key=>$value): ?>
-              <div class="medium-4 columns resume-item">
-                <a href="http://roastmyresume.com/resume.php?resumeId=<?php echo $value;?>"><img src="/uploads/<?php echo $value;?>" /></a>
-              </div>
-            <?php endforeach; ?>
-            <div class="medium-4 columns resume-item">
+            <?php foreach($uploads as $key=>$value){
+              echo '<div class="medium-4 columns resume-item">
+                <a href="http://roastmyresume.com/resume.php?resumeId='.$value.'"><img src="/uploads/'.$value.'" /></a>
+              </div>';
+            } ?>
+            <div class="medium-4 columns resume-item end">
               <a href="http://roastmyresume.com/resume.php"><img src="http://i.imgur.com/CSS4APd.png" /></a>
             </div>
           </div>
