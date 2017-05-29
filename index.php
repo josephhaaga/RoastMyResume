@@ -57,10 +57,9 @@
           <div class="row">
             <!-- Grid of resumes -->
             <?php $uploads = scandir('uploads'); ?>
-            <?php print_r($uploads); ?>
             <?php foreach($uploads as $key=>$value){
               echo '<div class="medium-4 columns resume-item">
-                <a href="http://roastmyresume.com/resume.php?resumeId='.$value.'"><img src="/uploads/'.$value.'" /></a>
+                <a href="http://roastmyresume.com/resume.php?resumeId='.str_replace('.jpg','',$value).'"><img src="/uploads/'.$value.'" /></a>
               </div>';
             } ?>
             <div class="medium-4 columns resume-item end">
