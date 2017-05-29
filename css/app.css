@@ -1,3 +1,29 @@
 .annotations{
 	list-style-type: none;
 }
+
+body{
+	background: lightblue!important;
+}
+
+.navigation{
+	margin-bottom: 1rem;
+	border-radius: 2%;
+	background: lightgrey;
+}
+
+.site-name{
+	color: transparent;
+	background: url('../img/logo-white.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.upload-zone{
+	background: lemonchiffon;
+	height:8rem;
+}
+
+.resume-container{
+	position: relative
+}

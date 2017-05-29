@@ -33,7 +33,7 @@ function setupSidebar(ob){
 		annotation_number = ob;
 		addToSidebar(annotations[ob]);
 		// add Annotation Dot
-		$('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(annotations[ob].x)+"%;top:"+(annotations[ob].y)+"%; background-color:"+determineColor(annotations[ob])+"'></div>");
+		$('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:calc("+(annotations[ob].x)+"% - 10px);top:calc("+(annotations[ob].y)+"% - 10px); background-color:"+determineColor(annotations[ob])+"'></div>");
 	}
 }
 function addToSidebar(anno_obj){
@@ -104,13 +104,13 @@ function registerComment(x,y){
 			selected_type=$(':checked').first().attr('id'); 
 			switch(selected_type){
 				case "grammar":
-					$('.resume-container').append("<div class='blue-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"%;top:calc("+(y-10)+"% - 10px);'></div>");
+					$('.resume-container').append("<div class='blue-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:calc("+(x-10)+"% - 20px);top:calc("+(y-10)+"% - 20px);'></div>");
 					break;
 				case "design":
-					$('.resume-container').append("<div class='green-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"%;top:calc("+(y-10)+"% - 10px);'></div>");
+					$('.resume-container').append("<div class='green-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:calc("+(x-10)+"% - 20px);top:calc("+(y-10)+"% - 20px);'></div>");
 					break;
 				case "content":
-					$('.resume-container').append("<div class='red-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"%;top:calc("+(y-10)+"% - 10px);'></div>");
+					$('.resume-container').append("<div class='red-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:calc("+(x-10)+"% - 20px);top:calc("+(y-10)+"% - 20px);'></div>");
 					break;
 			}
 		}
@@ -131,11 +131,11 @@ function createNewComment(x,y){
 
 $('.the-resume').click(function(e){
 	// annotation_number = firebase.database().ref('resume/'+this_resume_id).child('posts').push().key;
-	x = e.pageX;
-	y = e.pageY;
+	x = e.pageX - $('.the-resume').offset().left;
+	y = e.pageY - $('.the-resume').offset().top;
 	// 209, 525
-	x = (x/$(window).width())*100;
-	y = (y/$(window).height())*100;
+	x = (x/$('.resume-container').width())*100;
+	y = (y/$('.resume-container').height())*100;
 	// $('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
 	// createNewComment(x,y,annotation_number);
 	createNewComment(x,y);
