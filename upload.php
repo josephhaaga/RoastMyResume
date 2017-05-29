@@ -38,7 +38,7 @@
             </div>
 
             <pre class="callout">
-                <?php $n = fopen("resume_ids", "r") or die("Unable to open file!"); ?>
+                <?php $n = fopen("resume_ids", "r"); ?>
                 <?php print_r(fread($n, filesize("resume_ids")); ?>
                 <?php fclose($n); ?>
             </pre>
