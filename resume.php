@@ -20,7 +20,7 @@
         <div class="random-button">
             <?php $array = explode("\n", file_get_contents('resume_ids')); ?>
             <?php $random_resume = $array[array_rand($array)]; ?>
-          <a href="/resume.html?resumeId=<?php echo $random_resume; ?>">Random Resume</a>
+          <a href="/resume.php?resumeId=<?php echo $random_resume; ?>">Random Resume</a>
         </div>
       </div>
     </div>

@@ -83,7 +83,7 @@
                 success:  function() {
                     console.log("UPLOAD SUCCESSFUL!");
                     my_path = file_name.substring(0,file_name.indexOf("."));
-                    $('.upload-zone').append("<p>Visit your new resume page: </p><a style='display:inline;' href='http://roastmyresume.com/resume.html?resumeId="+my_path+"' >roastmyresume.com/resume.html?resumeId="+my_path+"</a>");
+                    $('.upload-zone').append("<p>Visit your new resume page: </p><a style='display:inline;' href='http://roastmyresume.com/resume.php?resumeId="+my_path+"' >roastmyresume.com/resume.html?resumeId="+my_path+"</a>");
               firebase.database().ref("users").push({"user":email_address, "file":file_name});
                 }
             }); 
