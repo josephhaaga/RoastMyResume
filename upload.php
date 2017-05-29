@@ -40,6 +40,7 @@
             <pre class="callout">
                 <?php $array = explode("\n", file_get_contents('resume_ids')); ?>
                 <?php print_r($array); ?>
+                <?php echo $array[array_rand($array)]; ?>
             </pre>
 
         </div>
