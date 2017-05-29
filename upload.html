@@ -53,10 +53,12 @@
 	      	Dropzone.autoDiscover = false;
 		    $(".dropzone").dropzone({
 		        renameFilename: function (filename) {
+		        	console.log("var postsRef = firebase.database().ref(resume);")
 		        	var postsRef = firebase.database().ref("resume");
+		        	console.log("var newPostRef = postsRef.push({uploaded:true});")
 					var newPostRef = postsRef.push({"uploaded":true});
 					str = newPostRef.toString();
-					file_name = str.substring(str.lastIndexOf('/')+1,str.length-1) + ".jpg";
+					file_name = str.substring(str.lastIndexOf('/')+1,str.length) + ".jpg";
 					console.log("renaming file from "+filename+" to "+file_name);
 		            return file_name;
 		        }
