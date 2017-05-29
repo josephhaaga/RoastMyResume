@@ -53,7 +53,7 @@
 	      	Dropzone.autoDiscover = false;
 		    $(".dropzone").dropzone({
 		        renameFilename: function (filename) {
-		        	var postsRef = firebase.database().child("resume");
+		        	var postsRef = firebase.database().ref("resume");
 					var newPostRef = postsRef.push();
 					console.log("renaming file "+newPostRef);
 		            return newPostRef;
