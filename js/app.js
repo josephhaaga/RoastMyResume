@@ -1,5 +1,5 @@
 $(document).foundation()
-
+resumes = {};
 firebase.database().ref('resume').on("value", function(snapshot) {
   resumes = (snapshot.val());
 },function (errorObject) {
