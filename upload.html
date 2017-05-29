@@ -67,6 +67,10 @@
 		        	}else{
 		        		return file_name;
 		        	}
+		        },
+		        success:  function() {
+		        	console.log("UPLOAD SUCCESSFUL!");
+		        	$('.upload-zone').append("<p>Visit your new resume page: </p><a style='display:inline;' href='roastmyresume.com/resume.html?resumeId="+file_name+"' >roastmyresume.com/resume.html?resumeId="+file_name+"</a>")
 		        }
 		    }); 
 	    });
