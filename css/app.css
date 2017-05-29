@@ -63,3 +63,7 @@ body{
 .navigation .columns{
 	position: relative;
 }
+
+.resume-item{
+	padding-bottom: 1rem;
+}
