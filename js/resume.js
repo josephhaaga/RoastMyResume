@@ -39,7 +39,7 @@ function setupSidebar(ob){
 function addToSidebar(anno_obj){
 	console.log(anno_obj)
 
-	$('.sidebar .annotations').append("<li><div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:"+determineColor(anno_obj)+";'>"+anno_obj.remarks+"</div></li>");
+	$('.sidebar .annotations').prepend("<li><div class='callout sidebar-annotation' id='sidebarAnnotation"+annotation_number+"' style='background-color:"+determineColor(anno_obj)+";'>"+anno_obj.remarks+"</div></li>");
 
 	switch($(this).prop('id')){
 		case 'commentContent':
