@@ -55,8 +55,9 @@
 		        renameFilename: function (filename) {
 		        	var postsRef = firebase.database().ref("resume");
 					var newPostRef = postsRef.push();
-					console.log("renaming file "+newPostRef);
-		            return newPostRef;
+					file_name = newPostRef.substring(newPostRef.lastIndexOf('/')+1,newPostRef.length-1)
+					console.log("renaming file "+file_name);
+		            return file_name;
 		        }
 		    }); 
 	    });
