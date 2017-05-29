@@ -33,7 +33,7 @@ function setupSidebar(ob){
 		annotation_number = ob;
 		addToSidebar(annotations[ob]);
 		// add Annotation Dot
-		$('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(annotations[ob].x-10)+"px;top:"+(annotations[ob].y-10)+"px; background-color:"+determineColor(annotations[ob])+"'></div>");
+		$('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(annotations[ob].x)+"%;top:"+(annotations[ob].y)+"%; background-color:"+determineColor(annotations[ob])+"'></div>");
 	}
 }
 function addToSidebar(anno_obj){
@@ -104,13 +104,13 @@ function registerComment(x,y){
 			selected_type=$(':checked').first().attr('id'); 
 			switch(selected_type){
 				case "grammar":
-					$('.resume-container').append("<div class='blue-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
+					$('.resume-container').append("<div class='blue-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"%;top:calc("+(y-10)+"% - 10px);'></div>");
 					break;
 				case "design":
-					$('.resume-container').append("<div class='green-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
+					$('.resume-container').append("<div class='green-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"%;top:calc("+(y-10)+"% - 10px);'></div>");
 					break;
 				case "content":
-					$('.resume-container').append("<div class='red-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
+					$('.resume-container').append("<div class='red-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"%;top:calc("+(y-10)+"% - 10px);'></div>");
 					break;
 			}
 		}
@@ -133,6 +133,9 @@ $('.the-resume').click(function(e){
 	// annotation_number = firebase.database().ref('resume/'+this_resume_id).child('posts').push().key;
 	x = e.pageX;
 	y = e.pageY;
+	// 209, 525
+	x = (x/$(window).width())*100;
+	y = (y/$(window).height())*100;
 	// $('.resume-container').append("<div class='black-dot-light' id='annotation"+annotation_number+"' style='position:absolute;left:"+(x-10)+"px;top:"+(y-10)+"px'></div>");
 	// createNewComment(x,y,annotation_number);
 	createNewComment(x,y);
@@ -149,9 +152,11 @@ $('#comment-modal').on("closed.zf.reveal",function(){
 
 $(document).keypress(function(e) {
     if(e.which == 13 && $('body').hasClass('is-reveal-open')) {
+    	console.log("x: "+x+"  y:"+y);
     	registerComment(x,y);
     }
 });
 $('#comment-submit').click(function(){
+		console.log("x: "+x+"  y:"+y);
 		registerComment(x,y);
 });
