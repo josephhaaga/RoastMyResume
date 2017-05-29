@@ -38,12 +38,6 @@
                         <input type="submit" value="Upload Image" name="submit"> -->
                     </form>
             </div>
-
-            <pre class="callout">
-                <?php $array = explode("\n", file_get_contents('resume_ids')); ?>
-                <?php echo $array[array_rand($array)]; ?>
-            </pre>
-
         </div>
       </div>
     </div>
