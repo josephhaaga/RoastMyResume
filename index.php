@@ -19,7 +19,7 @@
         <div class="random-button">
             <?php $array = explode("\n", file_get_contents('resume_ids')); ?>
             <?php $random_resume = $array[array_rand($array)]; ?>
-          <a href="/resume.php?resumeId=<?php echo $random_resume; ?>">Random Resume</a>
+          <a href="/resume.html?resumeId=<?php echo $random_resume; ?>">Random Resume</a>
         </div>
       </div>
     </div>
@@ -52,25 +52,14 @@
         <div class="callout secondary">
           <div class="row">
             <!-- Grid of resumes -->
-            <?php $uploads = scandir('uploads'); ?>
-            <?php print_r($uploads); ?>
+            <?php $uploads = scandir('/uploads'); ?>
+            <?php foreach($uploads as $key=>$value): ?>
+              <div class="medium-4 columns resume-item">
+                <a href="http://roastmyresume.com/resume.php?resumeId=<?php echo $value;?>"><img src="/uploads/<?php echo $value;?>" /></a>
+              </div>
+            <?php endforeach; ?>
             <div class="medium-4 columns resume-item">
-              <a href="http://roastmyresume.com/resume.html?resumeId=123"><img src="http://i.imgur.com/CSS4APd.png" /></a>
-            </div>
-            <div class="medium-4 columns resume-item">
-              <a href="http://roastmyresume.com/resume.html?resumeId=123"><img src="http://i.imgur.com/CSS4APd.png" /></a>
-            </div>
-            <div class="medium-4 columns resume-item">
-              <a href="http://roastmyresume.com/resume.html?resumeId=123"><img src="http://i.imgur.com/CSS4APd.png" /></a>
-            </div>
-            <div class="medium-4 columns resume-item">
-              <a href="http://roastmyresume.com/resume.html?resumeId=123"><img src="http://i.imgur.com/CSS4APd.png" /></a>
-            </div>
-            <div class="medium-4 columns resume-item">
-              <a href="http://roastmyresume.com/resume.html?resumeId=123"><img src="http://i.imgur.com/CSS4APd.png" /></a>
-            </div>
-            <div class="medium-4 columns resume-item">
-              <a href="http://roastmyresume.com/resume.html?resumeId=123"><img src="http://i.imgur.com/CSS4APd.png" /></a>
+              <a href="http://roastmyresume.com/resume.php"><img src="http://i.imgur.com/CSS4APd.png" /></a>
             </div>
           </div>
         </div>
