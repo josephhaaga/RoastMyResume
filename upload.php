@@ -38,9 +38,8 @@
             </div>
 
             <pre class="callout">
-                <?php $n = fopen("resume_ids", "r"); ?>
-                <?php echo (fread($n, filesize("resume_ids")); ?>
-                <?php fclose($n); ?>
+                <?php $array = explode("\n", file_get_contents('resume_ids')); ?>
+                <?php print_r($array); ?>
             </pre>
 
         </div>
