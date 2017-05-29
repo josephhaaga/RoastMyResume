@@ -53,7 +53,6 @@
           <div class="row">
             <!-- Grid of resumes -->
             <?php $uploads = scandir('/uploads'); ?>
-            <?php print_r($uploads); ?>
             <?php foreach($uploads as $key=>$value): ?>
               <div class="medium-4 columns resume-item">
                 <a href="http://roastmyresume.com/resume.php?resumeId=<?php echo $value;?>"><img src="/uploads/<?php echo $value;?>" /></a>
