@@ -55,19 +55,17 @@
         </div>
         <div class="callout secondary">
           <div class="row">
-            <div class="small-block-grid-3">
-              <!-- Grid of resumes -->
-              <?php $uploads = scandir('uploads'); ?>
-              <?php foreach($uploads as $key=>$value){
-                if($value!='.' && $value!='..'){
-                  echo '<div class="resume-item">
-                  <a href="http://roastmyresume.com/resume.php?resumeId='.str_replace('.jpg','',$value).'"><img src="/uploads/'.$value.'" /></a>
-                </div>';
-                }
-              } ?>
-              <div class="resume-item">
-                <a href="http://roastmyresume.com/resume.php"><img src="http://i.imgur.com/CSS4APd.png" /></a>
-              </div>
+            <!-- Grid of resumes -->
+            <?php $uploads = scandir('uploads'); ?>
+            <?php foreach($uploads as $key=>$value){
+              if($value!='.' && $value!='..'){
+                echo '<div class="medium-4 columns resume-item">
+                <a href="http://roastmyresume.com/resume.php?resumeId='.str_replace('.jpg','',$value).'"><img src="/uploads/'.$value.'" /></a>
+              </div>';
+              }
+            } ?>
+            <div class="medium-4 columns resume-item end">
+              <a href="http://roastmyresume.com/resume.php"><img src="http://i.imgur.com/CSS4APd.png" /></a>
             </div>
           </div>
         </div>
