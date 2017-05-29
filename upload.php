@@ -1,50 +1,115 @@
-<pre class="callout">
-    <?php print_r($_FILES); ?>
-</pre>
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roast My Resume</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <div class="row expanded navigation" data-equalizer data-equalize-on="medium" id="test-eq">
+      <div class="medium-6 columns" data-equalizer-watch>
+        <div class="logo-button">
+          <a href="/"><h1 class="site-name">Roast My Resume</h1></a>
+        </div>
+      </div>
+      <div class="medium-6 columns" data-equalizer-watch>
+        <div class="random-button">
+          <a href="/resume.html?resumeId=">Random Resume</a>
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="border">
+          <p>Please upload a jpg/png with all personal information redacted!!!</p>
+            <div class="upload-zone">
+            <label for="email">Enter your email:</label>
+            <input id="emailField" type="email" name="email">
+                <form action="perform_upload.php" method="post" class="dropzone" enctype="multipart/form-data">
+            <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
+                        Drop resume here (or select from harddrive):
+                        <!-- <input type="file" name="file" id="fileToUpload">
+                        <input type="submit" value="Upload Image" name="submit"> -->
+                    </form>
+            </div>
 
-<?php
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["file"]["name"]);
-$uploadOk = 1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["file"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-}
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
-// Check file size
-if ($_FILES["file"]["size"] > 5000000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-    if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
-}
-?>
+            <pre class="callout">
+                <?php $n = fopen("../backups/resume_ids", "r") or die("Unable to open file!"); ?>
+                <?php print_r(fread($n, filesize("../backups/resume_ids")); ?>
+                <?php fclose($n); ?>
+            </pre>
 
+        </div>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCJkxAmM6oZsUpbi0o4q_W0n5TWr4r2qWE",
+        authDomain: "rmr.firebaseapp.com",
+        databaseURL: "https://rmr.firebaseio.com",
+        projectId: "firebase-rmr",
+        storageBucket: "firebase-rmr.appspot.com",
+        messagingSenderId: "518079744181"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="./js/dropzone.js"></script>
+    <script>
+      email_address = null;
+        $(document).ready(function(){
+          run = false;
+          $(this).foundation();    
+          Dropzone.autoDiscover = false;
+            $(".dropzone").dropzone({
+                renameFilename: function (filename) {
+                    if(!run){
+                        console.log("var postsRef = firebase.database().ref(resume);")
+                        var postsRef = firebase.database().ref("resume");
+                        console.log("var newPostRef = postsRef.push({uploaded:true});")
+                        var newPostRef = postsRef.push({"uploaded":true});
+                        str = newPostRef.toString();
+                        file_name = str.substring(str.lastIndexOf('/')+1,str.length) + ".jpg";
+                        console.log("renaming file from "+filename+" to "+file_name);
+                        run=true;
+                        return file_name;
+                    }else{
+                        return file_name;
+                    }
+                },
+                success:  function() {
+                    console.log("UPLOAD SUCCESSFUL!");
+                    my_path = file_name.substring(0,file_name.indexOf("."));
+                    $('.upload-zone').append("<p>Visit your new resume page: </p><a style='display:inline;' href='http://roastmyresume.com/resume.html?resumeId="+my_path+"' >roastmyresume.com/resume.html?resumeId="+my_path+"</a>");
+              firebase.database().ref("users").push({"user":email_address, "file":file_name});
+                }
+            }); 
+
+        $('#emailField').on('keyup',function(){
+          email_address = $(this).val();
+          $('.dropzone').show();
+        })
+        });
+
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-66264514-8', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
