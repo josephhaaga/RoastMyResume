@@ -1,3 +1,8 @@
+<pre class="callout">
+    <?php print_r($_FILES); ?>
+</pre>
+
+
 <?php
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -42,3 +47,4 @@ if ($uploadOk == 0) {
     }
 }
 ?>
+
