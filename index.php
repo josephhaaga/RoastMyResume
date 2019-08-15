@@ -47,7 +47,7 @@
                   </ul>
                 </li>
               </ul>
-            <h4><a href="http://roastmyresume.com/upload.php">Upload your resume</a> to get started!</h4>
+            <h4><a href="upload.php">Upload your resume</a> to get started!</h4>
             </div>
             <div class="medium-8 columns">
               <img src="/img/demo.png" />
@@ -61,12 +61,12 @@
             <?php foreach($uploads as $key=>$value){
               if($value!='.' && $value!='..'){
                 echo '<div class="medium-4 columns resume-item">
-                <a href="http://roastmyresume.com/resume.php?resumeId='.str_replace('.jpg','',$value).'"><img src="/uploads/'.$value.'" /></a>
+                <a href="resume.php?resumeId='.str_replace('.jpg','',$value).'"><img src="/uploads/'.$value.'" /></a>
               </div>';
               }
             } ?>
             <div class="medium-4 columns resume-item end">
-              <a href="http://roastmyresume.com/resume.php"><img src="http://i.imgur.com/CSS4APd.png" /></a>
+              <!-- <a href="resume.php"><img src="http://i.imgur.com/CSS4APd.png" /></a> -->
             </div>
           </div>
         </div>
